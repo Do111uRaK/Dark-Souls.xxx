@@ -1,0 +1,122 @@
+html, body {  
+    height: 100%; 
+    margin: 0;
+    box-sizing: border-box;  
+    font-family: 'Dark', serif;  
+}  
+
+@font-face {
+    font-family: 'Dark';
+    src: url(../fonts/cinzel_regular.ttf);
+}
+body {  
+    background-image: url('../images/Artorias.gif'); 
+    background-size: cover;   
+    background-position: center;  
+    position: relative;  
+    
+}  
+
+/* Наложение затемненного фона */  
+body::after {  
+    content: "";  
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+    right: 0;  
+    bottom: 0;  
+    background-color: rgba(28, 28, 28, 0.7);   
+    z-index: 1; 
+}  
+
+header {  
+    text-align: center;  
+    padding: 50px;  
+    z-index: 2; 
+    position: relative; 
+}  
+h1 {  
+    color: #D4AF37; 
+    margin: 0;  
+}  
+
+nav {  
+    margin-top: 20px;  
+}  
+
+nav ul {  
+    list-style-type: none;  
+    padding: 0;  
+}  
+
+nav li {  
+    position: relative;
+    display: inline;  
+    margin: 0 15px;  
+}  
+
+nav a {  
+    color: #D4AF37;   
+    text-decoration: none;  
+    font-weight: bold;  
+}  
+
+nav a:hover {  
+    color: #BF0000;  
+}  
+
+main {  
+    padding: 20px;  
+    z-index: 2; 
+    position: relative; 
+}  
+
+h2 {  
+    color: #D4AF37; 
+}  
+
+.prolog{  
+    background-color: rgba(44, 42, 41, 0.8); 
+    padding: 40px;  
+    margin: 20px 0;  
+    border-radius: 5px; 
+    color: #C0C0C0;  
+    text-align: center;
+    line-height: 200%;
+} 
+
+
+footer {  
+    text-align: center;  
+    padding: 20px;  
+    background-color: #333; 
+    color: #C0C0C0; 
+}
+
+.dropdown{
+    display: none;
+}
+
+nav li:hover .dropdown{
+    display: block;
+    position: absolute;
+    padding: 5px;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+.dropdown li{
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Стили для даты и времени */
+.datetime-container {
+    margin-top: 15px;
+    color: #D4AF37;
+    font-size: 0.9em;
+    text-align: center;
+    line-height: 1.4;
+}

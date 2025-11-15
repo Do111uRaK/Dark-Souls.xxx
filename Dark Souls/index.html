@@ -1,0 +1,77 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Dark Souls</title>  
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">  
+    <link rel="stylesheet" href="CSS/styles.css">  
+</head>  
+<body>  
+    <header>  
+        <h1>Dark Souls</h1>  
+        <nav>  
+            <ul>  
+                <li><a href="authorization.html">Авторизация</a></li>  
+                <li><a href="#Articles">Статьи</a></li>  
+                <li><a href="#lore">Лор</a>
+                <li><a href="gallery.html">Галерея</a></li>
+                    <ul class="dropdown">
+                        <li><a href="#">Dark Souls 1</a></li>
+                        <li><a href="#">Dark Souls 2</a></li>
+                    </ul>
+                </li>  
+                <li><a href="support.html">Отзывы</a></li>
+                <li><a href="#contacts">Контакты</a></li>  
+            </ul>  
+        </nav>  
+    </header>  
+    <main>  
+        <section class="prolog">  
+            <h2>Добро пожаловать</h2>  
+            <h3>В Эру Древних мир был бесформенным, его окутывал туман. Это была земля серых утёсов, древних деревьев и присносущих драконов. Но затем был Огонь. И с приходом Огня всё распалось на две части. Жар и Холод, Жизнь и Смерть и конечно Свет и Тьма. И из Тьмы пришли Они, и Они нашли в пламени Души Повелителей: Нито — первый из мёртвых; Ведьма Изалита и её Дочери Хаоса; Гвин — Повелитель Света и его верные рыцари; и хитрый карлик, которого так легко забыть..</h3>  
+            <h3>Воспользовавшись Силой Повелителей, они бросили вызов драконам. Молнии Гвина разрывали их каменную чешую. Ведьмы призывали огненные смерчи. Нито насылал смерть и болезни. А Нагой Сит предал свой род и драконы сгинули. Так началась Эра Огня.</h3>
+            <h3>Но вскоре пламя погаснет и останется только Тьма. Даже сейчас лишь тлеют угли и человек видит не свет, но бесконечную ночь, а среди живых ходят проклятые носители Знака Тьмы.</h3>
+            <h3>Да, воистину, нежить заклеймена Знаком Тьмы. И в этих краях нежить сгоняют и ведут на север, где они будут томиться в заключении до конца дней. Таков твой удел. Но древние легенды гласят, что однажды мертвец будет избран. Он покинет Прибежище Нежити и отправится в страну Древних Повелителей — Лордран.</h3>
+        </section> 
+    </main>  
+    <footer>
+        <p>© 2025 Dark Souls. Все права защищены.</p>
+        <div id="datetime" class="datetime-container"></div>
+    </footer>
+
+    <script>
+        // Функция для склонения часов
+        function formatHours(hours) {
+            if (hours % 100 >= 11 && hours % 100 <= 14) {
+                return hours + ' часов';
+            }
+            switch(hours % 10) {
+                case 1: return hours + ' час';
+                case 2:
+                case 3:
+                case 4: return hours + ' часа';
+                default: return hours + ' часов';
+            }
+        }
+
+        // Функция обновления даты и времени
+        function updateDateTime() {
+            const now = new Date();
+            const months = [
+                'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+            ];
+
+            const dateStr = `Сегодня: ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} г.`;
+            const timeStr = `Сейчас: ${formatHours(now.getHours())} ${now.getMinutes()} минут`;
+
+            document.getElementById('datetime').innerHTML = `${dateStr}<br>${timeStr}`;
+        }
+
+        // Обновляем каждую минуту
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+    </script> 
+</body>  
+</html>  

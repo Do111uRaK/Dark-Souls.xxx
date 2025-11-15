@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзыв сайта Dark Souls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/support.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ниже можно оставить отзыв на наш сайт</h1>
+        
+        <form class="form-group">
+            <label for="message">Ваше сообщение:</label>
+            <textarea id="message" rows="7" cols="50" placeholder="Напишите ваше сообщение здесь..."></textarea>
+            <div class="char-count"><span id="charCount">0</span>/500</div>
+            
+        </form>
+        
+        <button id="submitBtn">Отправить</button>
+        
+        <div id="result">
+            <h3>Ваше обработанное сообщение:</h3>
+            <p id="processedText"></p>
+        </div>
+    </div>
+
+    <script src="js/support.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+body {  
+    background-image: url('../images/Artorias3.jpg');
+    background-size: cover;  
+    background-position: center;  
+    position: relative;  
+}  
+
+body::after {  
+    content: "";  
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+    right: 0;  
+    bottom: 0;  
+    background-color: rgba(28, 28, 28, 0.7); 
+    z-index: 1;  
+}  
+
+.login-form {  
+    background-color: rgba(44, 42, 41, 0.8);   
+    padding: 40px;  
+    margin: 50px auto;  
+    border-radius: 10px;  
+    color: #C0C0C0;   
+    width: 300px;  
+    text-align: center;   
+    position: relative;  
+    z-index: 2;  
+}  
+
+h2 {  
+    color: #D4AF37;  
+}  
+
+label {  
+    display: block;   
+    margin: 15px 0 5px;   
+}  
+
+input {  
+    width: 100%;  
+    padding: 10px;  
+    border: none;  
+    border-radius: 5px;  
+    margin-bottom: 15px;  
+}  
+
+button {  
+    background-color: #D4AF37;   
+    color: #fff;  
+    border: none;  
+    padding: 10px 15px;  
+    border-radius: 5px;  
+    cursor: pointer;  
+}  
+
+button:hover {  
+    background-color: #BF0000;   
+}  
+
+a {  
+    color: #D4AF37;  
+    text-decoration: none;  
+}  
+
+a:hover {  
+    color: #BF0000;  
+}  
