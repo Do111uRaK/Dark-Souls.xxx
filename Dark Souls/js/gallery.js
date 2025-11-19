@@ -1,9 +1,9 @@
 // Задача 1: Коллекция изображений
 const imageArray = [
-    '../images/ds1.jpg',
-    '../images/ds2.jpg',
-    '../images/ds3.jpg',
-    '../images/ds4.jpg'
+    'images/ds1.jpg',
+    'images/ds2.jpg',
+    'images/ds3.jpg',
+    'images/ds4.jpg'
 ];
 
 const imageContainer = document.getElementById('image-container');
@@ -20,11 +20,11 @@ imageArray.forEach((imageSrc) => {
 const hoverImage = document.getElementById('hover-image');
 
 hoverImage.addEventListener('mouseover', () => {
-    hoverImage.src = '../images/ds2.jpg';
+    hoverImage.src = 'images/ds2.jpg';
 });
 
 hoverImage.addEventListener('mouseout', () => {
-    hoverImage.src = '../images/ds1.jpg';
+    hoverImage.src = 'images/ds1.jpg';
 });
 
 // Задача 3: Замена по кнопке
@@ -32,7 +32,7 @@ const clickImage = document.getElementById('click-image');
 const changeBtn = document.getElementById('change-btn');
 
 changeBtn.addEventListener('click', () => {
-    clickImage.src = '../images/ds3.jpg';
+    clickImage.src = 'images/ds3.jpg';
 });
 
 // Задача 4: Циклическая замена
@@ -40,10 +40,10 @@ const cycleImage = document.getElementById('cycle-image');
 const cycleBtn = document.getElementById('cycle-btn');
 let currentImageIndex = 0;
 const cycleImages = [
-    '../images/ds1.jpg',
-    '../images/ds2.jpg',
-    '../images/ds3.jpg',
-    '../images/ds4.jpg'
+    'images/ds1.jpg',
+    'images/ds2.jpg',
+    'images/ds3.jpg',
+    'images/ds4.jpg'
 ];
 
 cycleBtn.addEventListener('click', () => {
