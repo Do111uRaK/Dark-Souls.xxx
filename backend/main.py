@@ -16,17 +16,10 @@ app = FastAPI(title="Simple API", version="1.0.0")
 # Убедитесь, что CORS настроен правильно
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000", 
-        "http://127.0.0.1:3000", 
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
-        "http://localhost:5500",  # Если используете Live Server
-        "http://127.0.0.1:5500"   # Если используете Live Server
-    ],
+    allow_origins=["*"],  # Разрешить все источники (небезопасно для продакшена)
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Добавьте OPTIONS!
-    allow_headers=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 # Модель данных для пользователя
@@ -60,7 +53,7 @@ async def get_user(user_login: str):
         raise HTTPException(status_code=404, detail="Пользователь не найден")
     if user.is_banned:
         raise HTTPException(status_code=401, detail="Пользователь забанен")
-    return user
+    return {"user": user}
 
 # Получить пользователя по логину
 @app.get("/auth/{user_login}")
@@ -70,7 +63,7 @@ async def authenticate_user(user_login: str, user_password: str):
         raise HTTPException(status_code=404, detail="Пароль или логин неправильны")
     if user.is_banned:
         raise HTTPException(status_code=401, detail="Пользователь забанен")
-    return 200
+    return {"user": user}
 
 # Создать нового пользователя
 @app.post("/users", response_model=User)
@@ -82,7 +75,7 @@ async def create_user(user: User):
     user.id = next_id
     next_id += 1
     users_db.append(user)
-    return user
+    return {"user": user}
 
 # Получить пользователя по ID
 @app.post("/users/ban/{user_id}", response_model=User)
@@ -91,7 +84,6 @@ async def ban_user(user_id: int):
     if user is None:
         raise HTTPException(status_code=404, detail="Пользователь не найден")
     user.is_banned = True
-    return 200
 
 # Обновить пользователя
 @app.put("/users/{user_id}", response_model=User)

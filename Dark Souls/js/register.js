@@ -8,27 +8,23 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
 
     // Отправляем запрос к FastAPI бэкенду
-    const response = await fetch('http://localhost:8000/auth/' + login + `?user_password=${encodeURIComponent(password)}`, {
-        method: 'GET',
-        //mode: 'no-cors', // This disables CORS checks for the request
+    const response = await fetch('http://localhost:8000/users/', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+        login: login,
+        password: password
+        })
     });
     const data = await response.json();
-
-    if (response.status == 404) {
-        alert('Пароль или логин неправильный');
-        return;
-    }
     if (response.status == 401) {
-        alert('Ваш аккаунт заблокирован');
+        alert('Пользователь с таким логином уже существует');
         return;
     }    
     if (response.ok) {
         // Сохраняем текущего пользователя и токен в сессию
-        sessionStorage.setItem('data', JSON.stringify(data));
-
         sessionStorage.setItem('currentUser', JSON.stringify(data.user));
         sessionStorage.setItem('authToken', data.access_token);
         
