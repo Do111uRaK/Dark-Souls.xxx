@@ -4,9 +4,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const login = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-
-
-
     // Отправляем запрос к FastAPI бэкенду
     const response = await fetch('http://localhost:8000/users/', {
         method: 'POST',
@@ -14,8 +11,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-        login: login,
-        password: password
+            login: login,
+            password: password
         })
     });
     const data = await response.json();
@@ -25,13 +22,12 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }    
     if (response.ok) {
         // Сохраняем текущего пользователя и токен в сессию
-        sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-        sessionStorage.setItem('authToken', data.access_token);
+        const user = data;
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
         
-        alert(`Добро пожаловать, ${data.user.login}!`);
-        window.location.href = '../dashboard.html';
+        alert(`Добро пожаловать, ${user.login}!`);
     } else {
         // Ошибка аутентификации
-        alert(data.detail || 'Неверный логин или пароль');
+        alert('Ошибка сервера');
     }
 });

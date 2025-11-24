@@ -27,15 +27,12 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }    
     if (response.ok) {
         // Сохраняем текущего пользователя и токен в сессию
-        sessionStorage.setItem('data', JSON.stringify(data));
-
-        sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-        sessionStorage.setItem('authToken', data.access_token);
+        const user = data
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
         
-        alert(`Добро пожаловать, ${data.user.login}!`);
-        window.location.href = '../dashboard.html';
+        alert(`Добро пожаловать, ${user.login}!`);
     } else {
         // Ошибка аутентификации
-        alert(data.detail || 'Неверный логин или пароль');
+        alert('Ошибка сервера');
     }
 });
