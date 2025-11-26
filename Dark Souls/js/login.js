@@ -4,16 +4,16 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const login = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-
-
-
     // Отправляем запрос к FastAPI бэкенду
-    const response = await fetch('http://localhost:8000/auth/' + login + `?user_password=${encodeURIComponent(password)}`, {
-        method: 'GET',
-        //mode: 'no-cors', // This disables CORS checks for the request
+    const response = await fetch('http://localhost:8000/auth/login') {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify({
+            login: login,
+            password: password
+        })
     });
     const data = await response.json();
 
