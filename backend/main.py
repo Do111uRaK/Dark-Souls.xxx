@@ -4,6 +4,10 @@ from endpoints.posts import router as posts_router
 from endpoints.users import router as users_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import locale
+
+# Установите локаль
+locale.setlocale(locale.LC_ALL, '')
 
 # Создание таблиц
 Base.metadata.create_all(bind=engine)

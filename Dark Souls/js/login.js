@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const password = document.getElementById('password').value;
 
     // Отправляем запрос к FastAPI бэкенду
-    const response = await fetch('http://localhost:8000/auth/login') {
+    const response = await fetch('http://localhost:8000/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
