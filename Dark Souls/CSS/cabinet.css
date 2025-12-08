@@ -1,0 +1,407 @@
+/* Стили для личных кабинетов */
+.cabinet-container {
+    background-color: rgba(44, 42, 41, 0.9);
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 5px;
+    color: #C0C0C0;
+    max-width: 1200px;
+    min-height: 500px;
+}
+
+.cabinet-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #D4AF37;
+    padding-bottom: 15px;
+}
+
+.cabinet-header h2 {
+    color: #D4AF37;
+    margin: 0;
+}
+
+.user-info {
+    background-color: rgba(28, 28, 28, 0.7);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border-left: 4px solid #D4AF37;
+}
+
+.user-info p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.role-user {
+    background-color: #2E5EAA;
+    color: white;
+}
+
+.role-moderator {
+    background-color: #D4AF37;
+    color: #1C1C1C;
+}
+
+.role-owner {
+    background-color: #BF0000;
+    color: white;
+}
+
+/* Стили для постов */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.post-card {
+    background-color: rgba(28, 28, 28, 0.8);
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+    border-color: #D4AF37;
+}
+
+.post-title {
+    color: #D4AF37;
+    margin-top: 0;
+    font-size: 1.3em;
+}
+
+.post-content {
+    margin: 15px 0;
+    line-height: 1.6;
+    max-height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.post-content.expanded {
+    max-height: none;
+}
+
+.read-more {
+    color: #D4AF37;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+    font-size: 0.9em;
+}
+
+.like-button {
+    background: none;
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.like-button:hover {
+    background-color: #D4AF37;
+    color: #1C1C1C;
+}
+
+.like-button.liked {
+    background-color: #BF0000;
+    border-color: #BF0000;
+    color: white;
+}
+
+.likes-count {
+    color: #D4AF37;
+    font-weight: bold;
+}
+
+/* Форма создания поста */
+.post-form {
+    background-color: rgba(28, 28, 28, 0.7);
+    padding: 25px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.post-form label {
+    display: block;
+    margin: 15px 0 5px;
+    color: #D4AF37;
+}
+
+.post-form input,
+.post-form textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(44, 42, 41, 0.8);
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #C0C0C0;
+    font-family: 'Cinzel', serif;
+}
+
+.post-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Таблица пользователей */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.users-table th,
+.users-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.users-table th {
+    background-color: rgba(212, 175, 55, 0.1);
+    color: #D4AF37;
+    font-weight: bold;
+}
+
+.users-table tr:hover {
+    background-color: rgba(212, 175, 55, 0.05);
+}
+
+.status-banned {
+    color: #BF0000;
+    font-weight: bold;
+}
+
+.status-active {
+    color: #2E8B57;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Стили для страницы статей */
+.articles-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.articles-header h1 {
+    color: #D4AF37;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.articles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.article-card {
+    background-color: rgba(44, 42, 41, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+    transform: scale(1.02);
+}
+
+.article-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #D4AF37;
+}
+
+.article-content {
+    padding: 20px;
+}
+
+.article-title {
+    color: #D4AF37;
+    margin: 0 0 15px 0;
+    font-size: 1.4em;
+}
+
+.article-excerpt {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #C0C0C0;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+.article-author {
+    color: #D4AF37;
+}
+
+.read-article-btn {
+    display: inline-block;
+    background-color: #D4AF37;
+    color: #1C1C1C;
+    padding: 8px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.read-article-btn:hover {
+    background-color: #BF0000;
+    color: white;
+}
+
+/* Модальное окно для полного просмотра статьи */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: rgba(44, 42, 41, 0.95);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: #D4AF37;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #BF0000;
+}
+
+.full-article-title {
+    color: #D4AF37;
+    margin-top: 0;
+    padding-right: 30px;
+}
+
+.full-article-content {
+    line-height: 1.8;
+    margin: 20px 0;
+}
+
+.full-article-meta {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    color: #888;
+}
+
+/* Стили для статистики */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: rgba(28, 28, 28, 0.8);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+    border-color: #D4AF37;
+}
+
+.stat-icon {
+    font-size: 2.5em;
+    background-color: rgba(212, 175, 55, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-info {
+    flex-grow: 1;
+}
+
+.stat-number {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #D4AF37;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: #C0C0C0;
+    opacity: 0.8;
+}

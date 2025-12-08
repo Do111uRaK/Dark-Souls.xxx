@@ -18,6 +18,7 @@ async def get_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_d
 @router.get("/{user_login}", response_model=UserResponse)
 async def get_user_by_login(user_login: str, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.login == user_login).first()
+    print(user)
     if user is None:
         raise HTTPException(status_code=404, detail="Пользователь не найден")
     if user.is_banned:
@@ -62,5 +63,4 @@ async def update_user(
 @router.delete("/{user_id}")
 async def delete_user(user_id: int, db: Session = Depends(get_db)):
     res = db.query(User).filter(User.id == user_id).delete()
-    print(res)
     db.commit()

@@ -13,7 +13,7 @@
         <nav>  
             <ul>  
                 <li><a href="authorization.html">Авторизация</a></li>  
-                <li><a href="#Articles">Статьи</a></li>  
+                <li><a href="posts.html">Статьи</a></li>  
                 <li><a href="#lore">Лор</a>
                 <li><a href="gallery.html">Галерея</a></li>
                     <ul class="dropdown">
@@ -22,7 +22,9 @@
                     </ul>
                 </li>  
                 <li><a href="support.html">Отзывы</a></li>
-                <li><a href="#contacts">Контакты</a></li>  
+                 <li id="cabinet-link" style="display: none;">
+                    <a href="#" id="cabinet-btn">Личный кабинет</a>
+                </li>
             </ul>  
         </nav>  
     </header>  
@@ -72,6 +74,17 @@
         // Обновляем каждую минуту
         updateDateTime();
         setInterval(updateDateTime, 60000);
+            // Проверка авторизации
+        document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+        const cabinetLink = document.getElementById('cabinet-link');
+        const cabinetBtn = document.getElementById('cabinet-btn');
+        
+        if (currentUser) {
+            cabinetLink.style.display = 'inline';
+            cabinetBtn.href = `cabinet.html?user=${currentUser.id}`;
+        }
+    });
     </script> 
 </body>  
 </html>  

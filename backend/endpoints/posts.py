@@ -2,8 +2,8 @@ from typing import List
 
 from database import get_db
 from fastapi import APIRouter, Depends, HTTPException
-from models import Post, user_post_likes
-from schemas import PostResponse, UserBase
+from models import Post, user_post_likes, User
+from schemas import PostResponse, UserBase, PostCreate
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
@@ -20,13 +20,15 @@ async def get_posts(skip: int = 0, limit: int = 100, db: Session = Depends(get_d
             func.count(user_post_likes.c.user_id).label(
                 "likes_count"
             ),  # Подсчет лайков
+            User.login.label("author_login"),
         )
+        .join(User, Post.author_id == User.id) 
         .outerjoin(
             user_post_likes, Post.id == user_post_likes.c.post_id
-        )  # LEFT JOIN с таблицей лайков
+        ) 
         .group_by(
-            Post.id, Post.title, Post.content
-        )  # Группировка для агрегатной функции
+            Post.id, Post.title, Post.content, User.login
+        ) 
         .offset(skip)
         .limit(limit)
         .all()
@@ -37,17 +39,24 @@ async def get_posts(skip: int = 0, limit: int = 100, db: Session = Depends(get_d
 
 @router.post("/create")
 async def create_post(
-    title: str, content: str, author_id: int, db: Session = Depends(get_db)
+    new_post: PostCreate, db: Session = Depends(get_db)
 ):
-    new_post = Post(title=title, content=content, author_id=author_id)
-    db.add(new_post)
+    new_db_post = Post(title=new_post.title, content=new_post.content, author_id=new_post.author_id)
+    db.add(new_db_post)
+    db.commit()
+
+
+# Удалить усера
+@router.delete("/{post_id}")
+async def delete_post(post_id: int, db: Session = Depends(get_db)):
+    res = db.query(Post).filter(Post.id == post_id).delete()
     db.commit()
 
 
 @router.post("/{post_id}/like")
 async def like_post(
     post_id: int,
-    current_user: UserBase,  # Предполагается, что у вас есть аутентификация
+    current_user: UserBase, 
     db: Session = Depends(get_db),
 ):
     # Проверяем, существует ли пост

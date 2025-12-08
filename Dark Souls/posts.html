@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статьи - Dark Souls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/cabinet.css">
+</head>
+<body>
+    <header>
+        <h1>Статьи Dark Souls</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="authorization.html">Авторизация</a></li>
+                <li><a href="posts.html">Статьи</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="support.html">Отзывы</a></li>
+                <li id="cabinet-link" style="display: none;">
+                    <a href="#" id="cabinet-btn">Личный кабинет</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cabinet-container">
+            <div class="articles-header">
+                <h1>Статьи и Лор Dark Souls</h1>
+                <p>Погрузитесь в глубокий мир Лордрана и его тайн</p>
+            </div>
+
+            <div id="articles-container" class="articles-container">
+                <!-- Посты будут загружены через JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно для полного просмотра статьи -->
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="full-article-title" class="full-article-title"></h2>
+            <div id="full-article-content" class="full-article-content"></div>
+            <div id="full-article-meta" class="full-article-meta"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Dark Souls. Все права защищены.</p>
+        <div id="datetime" class="datetime-container"></div>
+    </footer>
+
+    <script src="JS/posts.js"></script>
+    <script>
+        // Проверка авторизации
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            const cabinetLink = document.getElementById('cabinet-link');
+            const cabinetBtn = document.getElementById('cabinet-btn');
+            
+            if (currentUser) {
+                cabinetLink.style.display = 'inline';
+                cabinetBtn.href = `cabinet.html?user=${currentUser.id}`;
+            }
+            
+            // Функция для обновления даты и времени
+            function updateDateTime() {
+                const now = new Date();
+                const months = [
+                    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+                ];
+                
+                const dateStr = `Сегодня: ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} г.`;
+                const timeStr = `Сейчас: ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+                
+                document.getElementById('datetime').innerHTML = `${dateStr}<br>${timeStr}`;
+            }
+            
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+        });
+    </script>
+</body>
+</html>

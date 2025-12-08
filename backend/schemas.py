@@ -43,6 +43,7 @@ class PostCreate(BaseModel):
 
 class PostResponse(PostBase):
     likes_count: int
+    author_login: str
 
     class Config:
         from_attributes = True

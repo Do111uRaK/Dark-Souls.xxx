@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Dark Souls</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/cabinet.css">
+</head>
+<body>
+    <header>
+        <h1>Личный кабинет</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="posts.html">Статьи</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="support.html">Отзывы</a></li>
+                <li><a href="authorization.html" id="logout-btn">Выход</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cabinet-container">
+            <div class="cabinet-header">
+                <h2 id="cabinet-title">Загрузка...</h2>
+            </div>
+
+            <div id="user-info" class="user-info" style="display: none;">
+                <!-- Информация о пользователе -->
+            </div>
+
+            <!-- Для обычных пользователей -->
+            <div id="user-section" style="display: none;">
+                <h3>Понравившиеся посты</h3>
+                <div id="liked-posts" class="posts-grid">
+                    <!-- Лайкнутые посты будут загружены через JS -->
+                </div>
+            </div>
+
+            <!-- Для модераторов -->
+            <div id="moderator-section" style="display: none;">
+                <h3>Создание нового поста</h3>
+                <div class="post-form">
+                    <form id="create-post-form">
+                        <label for="post-title">Заголовок поста:</label>
+                        <input type="text" id="post-title" name="title" required>
+                        
+                        <label for="post-content">Содержание поста:</label>
+                        <textarea id="post-content" name="content" required></textarea>
+                        
+                        <div class="form-buttons">
+                            <button type="submit" class="ds-button">Создать пост</button>
+                            <button type="button" class="ds-button" onclick="clearForm()">Очистить</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h3>Ваши посты</h3>
+                <div id="my-posts" class="posts-grid">
+                    <!-- Посты модератора будут загружены через JS -->
+                </div>
+            </div>
+
+            <!-- Для владельцев -->
+            <div id="owner-section" style="display: none;">
+                    <h3>Статистика сайта</h3>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="total-users">0</div>
+                            <div class="stat-label">Всего пользователей</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="total-posts">0</div>
+                            <div class="stat-label">Всего статей</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">❤️</div>
+                        <div class="stat-info">
+                            <div class="stat-number" id="total-likes">0</div>
+                            <div class="stat-label">Всего лайков</div>
+                        </div>
+                    </div>
+                </div>
+                <h3>Управление пользователями</h3>
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Логин</th>
+                            <th>Роль</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <!-- Список пользователей будет загружен через JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Dark Souls. Все права защищены.</p>
+        <div id="datetime" class="datetime-container"></div>
+    </footer>
+
+    <script src="JS/cabinet.js"></script>
+    <script>
+        // Функция для обновления даты и времени
+        function updateDateTime() {
+            const now = new Date();
+            const months = [
+                'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+            ];
+            
+            const dateStr = `Сегодня: ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} г.`;
+            const timeStr = `Сейчас: ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            document.getElementById('datetime').innerHTML = `${dateStr}<br>${timeStr}`;
+        }
+        
+        function clearForm() {
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-content').value = '';
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+        
+        // Обработчик выхода
+        document.getElementById('logout-btn').addEventListener('click', function() {
+            sessionStorage.removeItem('currentUser');
+        });
+    </script>
+</body>
+</html>

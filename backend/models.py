@@ -38,4 +38,5 @@ class Post(Base):
     title = Column(String(200), nullable=False)
     content = Column(Text)
     author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    liked_by = relationship("User", back_populates="liked_posts")
+    liked_by = relationship("User", secondary=user_post_likes, back_populates="liked_posts")
+    author = relationship("User", backref="posts")
