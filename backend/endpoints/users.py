@@ -64,3 +64,20 @@ async def update_user(
 async def delete_user(user_id: int, db: Session = Depends(get_db)):
     res = db.query(User).filter(User.id == user_id).delete()
     db.commit()
+
+@router.get("/user/{user_id}/liked-posts")
+async def get_liked_posts(user_id: int, db: Session = Depends(get_db)):
+    # Получаем лайкнутые посты усера
+    liked_posts = (
+        db.query(Post)
+        .join(user_post_likes, Post.id == user_post_likes.c.post_id)
+        .filter(user_post_likes.c.user_id == user_id)
+        .all()
+    )
+    return liked_posts
+
+@router.get("/user/{user_id}/posts")
+async def get_user_posts(user_id: int, db: Session = Depends(get_db)):
+    # Получаем посты созданные модером
+    user_posts = db.query(Post).filter(Post.author_id == user_id).all()
+    return user_posts
